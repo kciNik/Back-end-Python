@@ -20,7 +20,7 @@ class Field:
             self.end = True
 
     def check_win(self):
-        win_comb = ((0, 1, 2), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6))
+        win_comb = ((0, 1), (3, 4, 5), (6, 7, 8), (0, 3, 6), (1, 4, 7), (2, 5, 8), (0, 4, 8), (2, 4, 6))
         for each in win_comb:
             if self.cells[each[0]] == self.cells[each[1]] == self.cells[each[2]] != ' ':
                 print(self.cells[each[0]] + ' win!')
