@@ -52,5 +52,3 @@ class Field:
 
 a = Field()
 a.game()
-
-# szfgdsdh
