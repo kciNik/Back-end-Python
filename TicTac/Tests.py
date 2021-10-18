@@ -1,29 +1,29 @@
-import TicTac
+import tic_tac
 import pytest
 
 
 class TestTicTac:
 
     def test_steps(self):
-        game = TicTac.Field()
+        game = tic_tac.Field()
         game.step(1)
         assert game.cells[0] == 'X'
         game.step(2)
         assert game.cells[1] == 'O'
 
     def test_input(self):
-        game = TicTac.Field()
+        game = tic_tac.Field()
         game.step(1)
         assert game.cells[0] == 'X'
-        with pytest.raises(TicTac.NotDigitInputException):
+        with pytest.raises(tic_tac.NotDigitInputException):
             game.check_input('h')
-        with pytest.raises(TicTac.WrongInputException):
+        with pytest.raises(tic_tac.WrongInputException):
             game.check_input('0')
-        with pytest.raises(TicTac.BusyCellException):
+        with pytest.raises(tic_tac.BusyCellException):
             game.check_input('1')
 
     def test_win(self):
-        game = TicTac.Field()
+        game = tic_tac.Field()
         game.step(1)
         assert game.cells[0] == 'X'
         game.step(4)
@@ -32,12 +32,12 @@ class TestTicTac:
         assert game.cells[1] == 'X'
         game.step(5)
         assert game.cells[4] == 'O'
-        with pytest.raises(TicTac.WinException):
+        with pytest.raises(tic_tac.WinException):
             game.step(3)
         assert game.cells[2] == 'X'
 
     def test_draw(self):
-        game = TicTac.Field()
+        game = tic_tac.Field()
         game.step(1)
         assert game.cells[0] == 'X'
         game.step(2)
