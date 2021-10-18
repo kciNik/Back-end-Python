@@ -28,7 +28,7 @@ class Field:
         self.player = False
         self.cells = [' ' for _ in range(9)]
 
-    def check_tie(self):
+    def check_draw(self):
         if self.cells.count(' ') == 0:
             return True
         return False
@@ -44,8 +44,10 @@ class Field:
         self.check_win()
         self.player = not self.player
 
-    def check_input(self):
-        data = input('Player ' + ('2' if self.player else '1') + ', make ur choice -> ')
+    def user_input(self):
+        return input('Player ' + ('2' if self.player else '1') + ', make ur choice -> ')
+
+    def check_input(self, data):
         if not data.isdigit():
             raise NotDigitInputException
         index = int(data)
@@ -53,7 +55,6 @@ class Field:
             raise WrongInputException
         if not self.cells[index - 1] == ' ':
             raise BusyCellException
-        return index
 
     def print(self):
         print(self.cells[0] + '|' + self.cells[1] + '|' + self.cells[2])
@@ -63,10 +64,11 @@ class Field:
         print(self.cells[6] + '|' + self.cells[7] + '|' + self.cells[8])
 
     def game(self):
-        while not self.check_tie():
+        while not self.check_draw():
             self.print()
+            x = self.user_input()
             try:
-                x = self.check_input()
+                self.check_input(x)
             except NotDigitInputException:
                 print('Ur input is not a digit, please enter 1 to 9')
                 continue
